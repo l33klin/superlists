@@ -1,0 +1,10 @@
+# add by klin in 20171029
+
+# db file
+db.sqlite3
+
+# python compile file
+*.pyc
+
+# log file
+*.log
