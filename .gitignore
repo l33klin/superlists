@@ -8,3 +8,6 @@ db.sqlite3
 
 # log file
 *.log
+
+# pycharm project files
+.idea/
