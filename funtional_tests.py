@@ -27,7 +27,7 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn('To-Do', header_text)
 
         # She is invited to enter a to-do item straight away
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.browser.find_element_by_id('item_text')
         self.assertEqual(
             inputbox.get_attribute('placeholder'),
             'Enter a to-do item'
@@ -46,7 +46,7 @@ class NewVisitorTest(unittest.TestCase):
         rows = table.find_elements_by_tag_name('tr')
         self.assertTrue(
             any(row.text == '1: Buy peacock feathers' for row in rows),
-            f"New to-do item did not appear in table. Contents were:\n{table.text}"
+            "New to-do item did not appear in table. Contents were:\n%s" % table.text
         )
 
         # There is still a text box inviting her to add another item. She
