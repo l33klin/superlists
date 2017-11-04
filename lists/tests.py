@@ -14,18 +14,34 @@ class HomePageTest(TestCase):
         found = resolve('/')
         self.assertEqual(found.func, home_page)
 
-    def test_home_page_returns_correct_html(self):
-        request = HttpRequest()
-        response = home_page(request)
-        execpted_html = render_to_string('home.html', request=request)
-        self.assertEqual(response.content.decode(), execpted_html)
+    # def test_home_page_returns_correct_html(self):
+    #     request = HttpRequest()
+    #     response = home_page(request)
+    #     execpted_html = render_to_string('home.html', request=request)
+    #     self.assertEqual(response.content.decode(), execpted_html)
+    #
+    # def test_home_page_can_save_a_POST_request(self):
+    #     request = HttpRequest()
+    #     request.method = 'POST'
+    #     request.POST['item_text'] = 'A new list item'
+    #     response = home_page(request)
+    #     self.assertIn('A new list item', response.content.decode())
+    #     expected_html = render_to_string('home.html',
+    #                                      {'new_item_text': 'A new list item'})
+    #     self.assertEqual(response.content.decode(), expected_html)
+    #
+    # def test_client(self):
+    #     from django.test import Client
+    #     c = Client()
+    #     response = c.post('/', {'item_text': 'A new list item'})
+    #     expected_html = render_to_string('home.html',
+    #                                      {'new_item_text': 'A new list item'})
+    #     self.assertEqual(response.content.decode(), expected_html)
 
-    def test_home_page_can_save_a_POST_request(self):
-        request = HttpRequest()
-        request.method = 'POST'
-        request.POST['item_text'] = 'A new list item'
-        response = home_page(request)
+    def test_uses_home_template(self):
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'home.html')
+
+    def test_can_save_a_POST_request(self):
+        response = self.client.post('/', data={'item_text': 'A new list item'})
         self.assertIn('A new list item', response.content.decode())
-        expected_html = render_to_string('home.html',
-                                         {'new_item_text': 'A new list item'})
-        self.assertEqual(response.content.decode(), expected_html)
