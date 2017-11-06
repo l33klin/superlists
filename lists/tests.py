@@ -75,7 +75,7 @@ class ListAndItemModelsTest(TestCase):
         second_item.list = list_
         second_item.save()
 
-        saved_list = List.objects.all()
+        saved_list = List.objects.first()
         self.assertEqual(saved_list, list_)
 
         saved_items = Item.objects.all()
