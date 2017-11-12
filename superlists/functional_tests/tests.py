@@ -31,6 +31,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
     def setUp(self):
         # self.browser = browser = webdriver.Firefox()
         self.browser = webdriver.Chrome("./tools/mac_chromedriver")
+        self.browser.set_window_size(1280, 960)
         self.browser.implicitly_wait(3)
 
     def tearDown(self):

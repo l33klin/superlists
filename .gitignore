@@ -3,6 +3,7 @@
 # db file
 db.sqlite3
 superlists/db.sqlite3
+superlists/database/*
 
 # python compile file
 *.pyc
