@@ -1,6 +1,6 @@
 version: '2'
 services:
-    web:
+    web1:
       restart: always
       #指定镜像创建源目录，在其根目录中必须包含Dockerfile
       build: ./superlists
@@ -24,11 +24,14 @@ services:
       build: ./nginx/
       ports:
         - "80:80"
+      environment:
+        - NGINX_HOST_1="www.klinlee.com"
+        - NGINX_PORT="www.klinlee.com"
       # nginx容器挂载在与web容器相同的容器卷上
       volumes_from:
-        - web
+        - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       links:
-        - web:web
+        - web1:web1
 
     db:
       restart: always
