@@ -13,3 +13,6 @@ superlists/database/*
 
 # pycharm project files
 .idea/
+
+# temp
+tmp/
