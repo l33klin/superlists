@@ -1,0 +1,15 @@
+version: "2"
+services:
+  ghost:
+    build : ./superlists
+    restart: always
+    container_name: klinlee_webserver
+
+  nginx-host:
+    build: ./nginx
+    restart: always
+    ports:
+      - "80:80"
+    links:
+      - klinlee_webserver
+    container_name: nginx-host
