@@ -1,9 +1,9 @@
 version: '2'
 services:
-    web1:
+    web:
       restart: always
       #指定镜像创建源目录，在其根目录中必须包含Dockerfile
-      build: ./superlists
+      build: ./superlists/
       # 多行命令
       command: bash -c "python3 manage.py makemigrations &&
                         python3 manage.py migrate &&
@@ -26,12 +26,14 @@ services:
         - "80:80"
       environment:
         - NGINX_HOST_1="www.klinlee.com"
-        - NGINX_PORT="www.klinlee.com"
+        - NGINX_PORT=80
       # nginx容器挂载在与web容器相同的容器卷上
       volumes_from:
-        - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+        - ./nginx.conf:/etc/nginx/conf.d/mysite.template
       links:
-        - web1:web1
+        - web:web
+      command:
+        /bin/bash -c "envsubst < /etc/nginx/conf.d/mysite.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
     db:
       restart: always
