@@ -5,9 +5,9 @@ services:
       #指定镜像创建源目录，在其根目录中必须包含Dockerfile
       build: ./superlists/
       # 多行命令
-      command: bash -c "python3 manage.py makemigrations &&
-                        python3 manage.py migrate &&
-                        python3 manage.py runserver 8000"
+      command: bash -c "python3 manage.py makemigrations
+                        && python3 manage.py migrate
+                        && python3 manage.py runserver 8000"
       # 端口映射(host:container)
       ports:
         - "8000:8000"
@@ -27,9 +27,10 @@ services:
       environment:
         - NGINX_HOST_1="www.klinlee.com"
         - NGINX_PORT=80
+        - WEB_CONTAINER_NAME = web
       # nginx容器挂载在与web容器相同的容器卷上
       volumes_from:
-        - ./nginx.conf:/etc/nginx/conf.d/mysite.template
+        - ./nginx/nginx.conf:/etc/nginx/conf.d/mysite.template
       links:
         - web:web
       command:
@@ -39,7 +40,7 @@ services:
       restart: always
       image: postgres:latest
       volumes:
-        - ./data/progresql:/var/lib/postgresql/data
+        - ./data/postgresql:/var/lib/postgresql/data
 
     redis:
       restart: always

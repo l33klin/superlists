@@ -16,3 +16,4 @@ superlists/database/*
 
 # temp
 tmp/
+data/
