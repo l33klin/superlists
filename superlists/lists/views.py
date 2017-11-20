@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from lists.models import Item, List
+from lists import google_manager
+
+import json
 
 
 # Create your views here.
@@ -32,3 +35,31 @@ def add_item(request, list_id):
     Item.objects.create(text=new_item_text, list=list_)
     return redirect('/lists/%d/' % list_.id)
 
+
+def google_login(request):
+    redirect = '/lists/oauth2callback'
+    resp = google_manager.get_login_resp(request, redirect)
+    return resp
+
+
+def google_auth_cb(request):
+    print(request.COOKIES)
+    redirect_url = request.COOKIES.get('google_auth_redirect', '/')
+    print(redirect_url)
+    login_ip = request.META['REMOTE_ADDR']
+    if 'HTTP_X_FORWARDED_FOR' in request.META:
+        login_ip = request.META['HTTP_X_FORWARDED_FOR']
+    print(login_ip)
+
+    code = request.GET.get('code', None)
+    print(code)
+    if not code:
+        return HttpResponse("Get code")
+    info = {}
+    try:
+        info = google_manager.get_people_info(request, code, redirect_url)
+    except Exception as e:
+        return HttpResponse('No permission, please contact country PM or eric.lu@shopeemobile if you need permissions ')
+
+    print(info)
+    return HttpResponse(json.dumps(info))
