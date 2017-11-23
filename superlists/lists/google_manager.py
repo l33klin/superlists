@@ -9,7 +9,7 @@ from django.conf import settings
 
 GOOGLE_CLIENT_ID = "807816233211-qn15m8oqtl2am0ref2i4lnr3qb2uoqld.apps.googleusercontent.com"
 GOOGLE_CLIENT_SECRET = "YC6oB_Ikv3vV_upvpAL80Qs1"
-LOGIN_COOKIE_DOMAIN = "http://localhost:8000"
+LOGIN_COOKIE_DOMAIN = ".localhost:8000"
 
 GOOGLE_CB_URL = "/lists/oauth2callback"
 
@@ -39,8 +39,11 @@ def get_login_resp(request, redirect):
     resp = HttpResponseRedirect(auth_url)
     max_age = 3600 * 24
     expires = datetime.strftime(datetime.utcnow() + timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
+    print(expires)
     resp.set_cookie('google_auth_redirect', redirect, max_age=max_age, expires=expires,
-                    domain=LOGIN_COOKIE_DOMAIN, secure=False)
+                    domain=LOGIN_COOKIE_DOMAIN, secure=True, httponly=True)
+    print(resp._headers)
+    print(resp.cookies)
     return resp
 
 

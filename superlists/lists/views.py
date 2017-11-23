@@ -59,7 +59,7 @@ def google_auth_cb(request):
     try:
         info = google_manager.get_people_info(request, code, redirect_url)
     except Exception as e:
-        return HttpResponse('No permission, please contact country PM or eric.lu@shopeemobile if you need permissions ')
+        return HttpResponse('No permission!!!')
 
     print(info)
     return HttpResponse(json.dumps(info))
