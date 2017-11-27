@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from django.http import HttpResponseRedirect
 from urllib.parse import urlencode
 from django.conf import settings
+from lists.requests_proxy import ProxyRequests
 
 
 GOOGLE_CLIENT_ID = "807816233211-qn15m8oqtl2am0ref2i4lnr3qb2uoqld.apps.googleusercontent.com"
@@ -28,7 +29,6 @@ def make_redirect_url(request, redirect):
 
 
 def get_login_resp(request, redirect):
-    print(redirect)
     auth_url = "https://accounts.google.com/o/oauth2/auth?" + urlencode({
         "client_id": GOOGLE_CLIENT_ID,
         "response_type": "code",
@@ -39,16 +39,13 @@ def get_login_resp(request, redirect):
     resp = HttpResponseRedirect(auth_url)
     max_age = 3600 * 24
     expires = datetime.strftime(datetime.utcnow() + timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
-    print(expires)
     resp.set_cookie('google_auth_redirect', redirect, max_age=max_age, expires=expires,
                     domain=LOGIN_COOKIE_DOMAIN, secure=True, httponly=True)
-    print(resp._headers)
-    print(resp.cookies)
     return resp
 
 
 def get_people_info(request, code, redirect):
-    resp = requests.post("https://www.googleapis.com/oauth2/v3/token?", {
+    resp = ProxyRequests.post("https://www.googleapis.com/oauth2/v3/token?", {
         "code": code,
         "client_id": GOOGLE_CLIENT_ID, # GOOGLE_CLIENT_ID
         "client_secret": GOOGLE_CLIENT_SECRET,  # GOOGLE_CLIENT_SECERT
@@ -65,7 +62,7 @@ def get_people_info(request, code, redirect):
     access_token = result["access_token"]
     expiry = result["expires_in"]
 
-    resp = requests.get("https://www.googleapis.com/plus/v1/people/me?", {
+    resp = ProxyRequests.get("https://www.googleapis.com/plus/v1/people/me?", {
         "access_token": access_token
     })
 

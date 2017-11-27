@@ -4,7 +4,7 @@
 @Time    : 2017/11/27 下午6:45
 @Author  : Jian
 @Contact : l33klin@gmail.com
-@Site    : 
+@Site    :
 @File    : requests_proxy.py
 """
 
@@ -47,34 +47,34 @@ class ProxyRequests(object):
     @staticmethod
     @proxy_check
     def post(url, data=None, json=None, **kwargs):
-        requests.post(url, data=data, json=json, proxy=proxies, **kwargs)
+        requests.post(url, data=data, json=json, proxies=proxies, **kwargs)
 
     @staticmethod
     @proxy_check
     def get(url, params=None, **kwargs):
-        requests.get(url, params=params, proxy=proxies, **kwargs)
+        requests.get(url, params=params, proxies=proxies, **kwargs)
 
     @staticmethod
     @proxy_check
     def options(url, **kwargs):
-        requests.options(url, proxy=proxies, **kwargs)
+        requests.options(url, proxies=proxies, **kwargs)
 
     @staticmethod
     @proxy_check
     def head(url, **kwargs):
-        requests.head(url, proxy=proxies, **kwargs)
+        requests.head(url, proxies=proxies, **kwargs)
 
     @staticmethod
     @proxy_check
     def put(url, data=None, **kwargs):
-        requests.put(url, data=data, proxy=proxies, **kwargs)
+        requests.put(url, data=data, proxies=proxies, **kwargs)
 
     @staticmethod
     @proxy_check
     def patch(url, data=None, **kwargs):
-        requests.patch(url, data=data, proxy=proxies, **kwargs)
+        requests.patch(url, data=data, proxies=proxies, **kwargs)
 
     @staticmethod
     @proxy_check
     def delete(url, **kwargs):
-        requests.delete(url, proxy=proxies, **kwargs)
+        requests.delete(url, proxies=proxies, **kwargs)
