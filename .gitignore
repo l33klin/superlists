@@ -17,3 +17,6 @@ superlists/database/
 tmp/
 data/
 superlists/__pycache__/
+
+# env files
+*.env
