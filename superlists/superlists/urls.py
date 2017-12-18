@@ -23,5 +23,9 @@ import lists.views
 urlpatterns = [
                url(r'^$', lists.views.home_page, name='home'),
                url(r'^lists/', include(lists_urls)),
+               url(r'^login/$', auth_views.login, name='login'),
+               url(r'^logout/$', auth_views.logout, name='logout'),
+               url(r'^oauth/', include('social_django.urls', namespace='social')),
+               url(r'^admin/', admin.site.urls),
                url(r'^admin/', admin.site.urls),
                ]
