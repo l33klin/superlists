@@ -1,13 +1,16 @@
-{% extends 'base.html' %}
+{% extends '../base.html' %}
 
 {% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
-  <br>
-  <p><strong>-- OR --</strong></p>
-  <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    <br>
+    <p><strong>-- OR --</strong></p>
+    <div class="social-sizes">
+        <a class="btn btn-block btn-social btn-lg btn-github" href="{% url 'social:begin' 'github' %}">
+            <i class="fa fa-github-square"></i>Login with GitHub</a>
+    </div>
 {% endblock %}
