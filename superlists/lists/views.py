@@ -13,13 +13,13 @@ def home_page(request):
     #     Item.objects.create(text=new_item_text)
     #     return redirect('/lists/the-only-list-in-the-world/')
 
-    return render(request, 'home.html')
+    return render(request, 'lists/lists_home.html')
 
 
 def view_list(request, list_id):
     list_ = List.objects.get(id=list_id)
     # items = Item.objects.filter(list=list_)
-    return render(request, 'list.html', {'list': list_})
+    return render(request, 'lists/list.html', {'list': list_})
 
 
 def new_list(request):
