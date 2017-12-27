@@ -156,7 +156,7 @@ STATICFILES_DIRS = (os.path.join('static'), )
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'home'  # redirect the request which login without next parameter
 
 
 SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
