@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',
+    'accounts',
     'lists',
 ]
 
@@ -161,3 +162,6 @@ LOGIN_REDIRECT_URL = 'home'  # redirect the request which login without next par
 
 SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
+SOCIAL_AUTH_GITHUB_SCOPE = ['email', 'username']
+
+# AUTH_USER_MODEL = 'accounts.MyUser'
