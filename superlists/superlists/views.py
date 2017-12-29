@@ -15,4 +15,10 @@ from django.http import HttpResponse
 
 @login_required
 def home(request):
+    if request.user.is_authenticated():
+        # Do something for authenticated users.
+        print("authenticated user")
+    else:
+        # Do something for anonymous users.
+        print("AnonymousUser")
     return render(request, 'home.html')
