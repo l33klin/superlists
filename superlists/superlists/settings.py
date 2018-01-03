@@ -84,7 +84,7 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
     'social_core.backends.twitter.TwitterOAuth',
     'social_core.backends.facebook.FacebookOAuth2',
-    'social_core.backends.douban.DoubanOAuth2',
+    'social_core.backends.weibo.WeiboOAuth2',
     'social_core.backends.evernote.EvernoteOAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
@@ -162,6 +162,7 @@ LOGIN_REDIRECT_URL = 'home'  # redirect the request which login without next par
 
 SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
+SOCIAL_AUTH_GITHUB_SCOPE = ['email', 'username']
 
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
@@ -176,7 +177,6 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
 )
 
-SOCIAL_AUTH_GITHUB_SCOPE = ['email', 'username']
-
-# AUTH_USER_MODEL = 'accounts.MyUser'
+SOCIAL_AUTH_WEIBO_KEY = config('SOCIAL_AUTH_WEIBO_KEY')
+SOCIAL_AUTH_WEIBO_SECRET = config('SOCIAL_AUTH_WEIBO_SECRET')
 

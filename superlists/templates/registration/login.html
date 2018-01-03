@@ -10,9 +10,15 @@
     <br>
     <p><strong>-- OR --</strong></p>
     <div class="col-sm-4">
-    <div class="social-sizes">
-        <a class="btn btn-block btn-social btn-lg btn-github" href="{% url 'social:begin' 'github' %}?next={{ request.GET.next }}">
-            <i class="fa fa-github"></i>Login with GitHub</a>
+        <div class="social-sizes">
+            <a class="btn btn-block btn-social btn-lg btn-github"
+               href="{% url 'social:begin' 'github' %}?next={{ request.GET.next }}">
+                <i class="fa fa-github"></i>Login with GitHub</a>
+        </div>
     </div>
+    <div class="col-sm-4">
+        <a class="btn btn-block btn-social btn-lg btn-weibo"
+               href="{% url 'social:begin' 'weibo' %}?next={{ request.GET.next }}">
+                <i class="fa fa-github"></i>Login with Weibo</a>
     </div>
 {% endblock %}
