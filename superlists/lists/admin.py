@@ -4,7 +4,7 @@ from django.contrib import admin
 
 
 class ListAdmin(admin.ModelAdmin):
-    fields = ()
+    fields = ('user')
 
 
 class Item(admin.ModelAdmin):
