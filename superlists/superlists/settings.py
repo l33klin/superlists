@@ -28,7 +28,7 @@ DEBUG = config('DEBUG', cast=bool)
 
 ENV = config('ENV')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["staging.klinlee.com", "localhost", "lirongrong.cn"]
 
 
 # Application definition

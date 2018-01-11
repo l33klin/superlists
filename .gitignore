@@ -20,3 +20,6 @@ superlists/__pycache__/
 
 # env files
 *.env
+
+# migrations file
+*/migrations/*
