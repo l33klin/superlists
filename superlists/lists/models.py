@@ -6,8 +6,7 @@ from django.dispatch import receiver
 
 
 class List(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    pass
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default='-1')
 
 
 @receiver(post_save, sender=User)
