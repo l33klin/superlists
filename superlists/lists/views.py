@@ -14,7 +14,7 @@ def home_page(request):
     #     Item.objects.create(text=new_item_text)
     #     return redirect('/lists/the-only-list-in-the-world/')
 
-    if request.user:
+    if request.user.is_authenticated():
         return view_list(request, request.user.list.id)
     else:
         return render(request, 'lists/lists_home.html')
