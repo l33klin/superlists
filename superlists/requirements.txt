@@ -35,3 +35,5 @@ requests == 2.18.4
 
 # functional_tests/tests.py: 6,7,8
 selenium == 3.6.0
+
+gunicorn == 19.7.1
