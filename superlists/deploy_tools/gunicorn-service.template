@@ -1,0 +1,12 @@
+[Unit]
+Description=gunicorn daemon for {SITENAME}
+After=network.target
+
+[Service]
+User=webrunner
+Group=web
+WorkingDirectory=/home/webrunner/sites/{SITENAME}/source/superlists
+ExecStart=/home/webrunner/virtualenv/bin/gunicorn --bind unix:/home/webrunner/socket{SITENAME}.socket superlists.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

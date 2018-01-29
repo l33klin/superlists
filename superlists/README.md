@@ -1,3 +1,15 @@
+配置新网站
+========
+## 需要安装的软件
+* nginx
+* Python3
+* Git
+* pip
+* virtualenv
+* gunicorn
+
+
+
 
 NOTICE:
 ======

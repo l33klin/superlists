@@ -220,9 +220,10 @@ LOGGING = {
             # 'filters': ['special']
         },
         'file': {
-            'level': 'DEBUG',
+            'level': 'ERROR',
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'log/request_error.log'),
+            'formatter': 'verbose'
         },
     },
     'loggers': {
