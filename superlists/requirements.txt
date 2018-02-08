@@ -20,11 +20,14 @@
 # lists/tests.py: 1,2
 # lists/urls.py: 16
 # lists/views.py: 1,2,5
-# manage.py: 14
+# manage.py: 35,38
 # superlists/urls.py: 16,17,18
 # superlists/views.py: 11,12,13
 # superlists/wsgi.py: 12
 Django == 1.11.6
+
+# deploy_tools/fabfile.py: 11
+Fabric3 == 1.13.1.post1
 
 # superlists/settings.py: 14
 python_decouple == 3.1
@@ -36,4 +39,6 @@ requests == 2.18.4
 # functional_tests/tests.py: 6,7,8
 selenium == 3.6.0
 
-gunicorn == 19.7.1
+python_social_auth == 0.3.6
+
+social_auth_app_django == 2.0.0
